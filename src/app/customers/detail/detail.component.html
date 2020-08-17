@@ -1,0 +1,5 @@
+<div *ngIf="customer | async as cust">
+    <h3>{{ cust.name }}</h3>
+    <img [src]="cust.image" alt=""/>
+    <p>{{ cust.bio }}</p>
+</div>

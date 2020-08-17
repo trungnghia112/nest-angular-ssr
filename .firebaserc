@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pwa-app-6924d": {
+      "hosting": {
+        "angular-seed": [
+          "pwa-app-6924d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pwa-app-6924d"
+  }
+}

@@ -1,0 +1,6 @@
+<p>list works!</p>
+<ul>
+    <li *ngFor="let cust of data.customers">
+        <a [routerLink]="cust.id" href="#">{{ cust.name }}</a>
+    </li>
+</ul>
