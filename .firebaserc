@@ -1,14 +1,14 @@
 {
   "targets": {
-    "pwa-app-6924d": {
+    "nghiatran-net": {
       "hosting": {
         "angular-seed": [
-          "pwa-app-6924d"
+          "nghiatran-net"
         ]
       }
     }
   },
   "projects": {
-    "default": "pwa-app-6924d"
+    "default": "nghiatran-net"
   }
 }

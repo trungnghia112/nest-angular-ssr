@@ -1,2 +1,40 @@
-<a [routerLink]="['/customers']" href="#">customers</a>
-<router-outlet></router-outlet>
+<div class="wrapper" id="site_wrapper">
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="navbar">
+        <a class="navbar-brand" href="/" [routerLink]="['/']">
+          <img width="300" height="68" src="assets/images/logo.svg" alt="logo">
+        </a>
+        <input type="checkbox" id="menu-toggle">
+        <label class="navbar-toggler" for="menu-toggle">
+          <span class="navbar-toggler-icon"></span>
+        </label>
+        <div class="navbar-collapse">
+          <ul class="navbar-nav">
+            <li *ngFor="let item of menu">
+              <a href="#" [routerLink]="['/' + item.slug]" routerLinkActive="active">{{ item.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main class="main" id="main">
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a href="/"><img src="assets/images/logo.svg" alt="Logo" loading="lazy"></a>
+        <span>just living the life as it goes by</span>
+      </div>
+      <div class="footer-social">
+        <div class="list-social hi-icon-effect-3 hi-icon-effect-3b">
+          <a class="hi-icon icon-facebook" href="https://facebook.com">Facebook</a>
+          <a class="hi-icon icon-instagram" href="https://facebook.com">instagram</a>
+          <a class="hi-icon icon-youtube-play" href="https://facebook.com">youtube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

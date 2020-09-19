@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let item of data$ | async as list">
+    <div [innerHTML]="item.content | safeHtml"></div>
+<!--    <quill-view [content]="item.content"></quill-view>-->
+  </li>
+</ul>
