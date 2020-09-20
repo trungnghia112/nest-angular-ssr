@@ -3,19 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '@env/environment';
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { PagesComponent } from '@pages/pages.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    // ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],

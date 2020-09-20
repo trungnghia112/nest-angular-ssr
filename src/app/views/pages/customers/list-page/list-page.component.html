@@ -1,0 +1,6 @@
+<h1>List Page</h1>
+
+<h2>Customers (Fake Data)</h2>
+<ul *ngFor="let cust of data.customers" [routerLink]="cust.id">
+    <li><h3>{{ cust.name }}</h3></li>
+</ul>
