@@ -3,36 +3,10 @@
   min-width: 0; /* Rendering problems using flexbox in Firefox and Chrome 48 */
 }
 
-.img-full {
-  width: 100%;
-  height: auto;
+a {
+  text-decoration: none;
 }
 
-.img-bg {
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.text-faded {
-  color: #aaaaaa;
-}
-
-.ellipses {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.bg-facebook {
-  background-color: $bg-facebook;
-}
-
-.bg-twitter {
-  background-color: $bg-twitter;
-}
-
-.bg-google {
-  background-color: $bg-google;
+img {
+  aspect-ratio: attr(width) / attr(height);
 }

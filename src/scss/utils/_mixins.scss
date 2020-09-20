@@ -306,3 +306,44 @@ $retina-suffix: '@2x';
   left: 0;
   bottom: 0;
 }
+
+@mixin card-list-mixin() {
+  .card {
+    @include flex-direction(row);
+    @include flexbox;
+    @include flex-wrap(wrap);
+  }
+
+  .card-img-wrap {
+    margin-right: 10px;
+  }
+
+  .card-img-wrap {
+    width: 110px;
+    @include align-self(start);
+  }
+
+  .card-body {
+    @include flex(1);
+  }
+
+  .card-title {
+    margin-top: 0;
+    font-size: 16px;
+    @include max-height-text(3, false, 16px);
+  }
+}
+
+@mixin icomoon() {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

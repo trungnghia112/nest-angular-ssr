@@ -1,0 +1,22 @@
+.input-group-append {
+  @include flexbox;
+}
+
+.input-group-btn-over {
+  position: relative;
+  background-color: $input-bg;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+
+  .form-control {
+    border-width: 0;
+    box-shadow: none;
+  }
+
+  .btn {
+    border-width: 0;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+  }
+}

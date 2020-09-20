@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { PagesComponent } from '@pages/pages.component';
+import { PartialsModule } from '@pages/partials/partials.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PagesComponent } from '@pages/pages.component';
     // ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PartialsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,6 +20,26 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/home/home.module').then(m => m.HomeModule),
       },
       {
+        path: 'vlog',
+        loadChildren: () => import('./views/pages/vlog/vlog.module').then(m => m.VlogModule),
+      },
+      {
+        path: 'blog',
+        loadChildren: () => import('./views/pages/blog/blog.module').then(m => m.BlogModule),
+      },
+      {
+        path: 'dev',
+        loadChildren: () => import('./views/pages/dev/dev.module').then(m => m.DevModule),
+      },
+      {
+        path: 'about',
+        loadChildren: () => import('./views/pages/about/about.module').then(m => m.AboutModule),
+      },
+      {
+        path: 'contact',
+        loadChildren: () => import('./views/pages/contact/contact.module').then(m => m.ContactModule),
+      },
+      {
         path: 'customers',
         loadChildren: () => import('./views/pages/customers/customers.module').then(m => m.CustomersModule),
       },

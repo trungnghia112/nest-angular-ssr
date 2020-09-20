@@ -20,7 +20,7 @@
 }
 
 .hi-icon-effect-3 {
-  @include hi-icon-effect-3(2px, #fff);
+  @include hi-icon-effect-3(2px, $body-color);
 }
 
 /* Effect 3a */
@@ -39,9 +39,9 @@
   }
 }
 
-.hi-icon-effect-3a {
-  @include hi-icon-effect-3a(#f06060, #FFF);
-}
+//.hi-icon-effect-3a {
+//  @include hi-icon-effect-3a(#f06060, #FFF);
+//}
 
 /* Effect 3b */
 @mixin hi-icon-effect-3b($color, $color-hover) {
@@ -65,5 +65,5 @@
 }
 
 .hi-icon-effect-3b {
-  @include hi-icon-effect-3b(#FFF, #f06060);
+  @include hi-icon-effect-3b($body-color, #fff);
 }

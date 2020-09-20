@@ -1,0 +1,160 @@
+@import 'core';
+
+.header {
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+.navbar-collapse {
+}
+
+.navbar-nav {
+  @include flexbox;
+
+  > li {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}
+
+.container {
+  max-width: map_get($container-max-widths, xl);
+}
+
+.row {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  margin-left: -$grid-gutter-width/2;
+  margin-right: -$grid-gutter-width/2;
+
+  > [class*='col-'] {
+    padding-left: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+  }
+}
+
+//.col-3 {
+//  @include flex(0 0 percentage(3/12));
+//  max-width: percentage(3/12);
+//}
+
+.col-4 {
+  @include flex(0 0 percentage(4/12));
+  max-width: percentage(4/12);
+}
+
+//.col-6 {
+//  @include flex(0 0 percentage(6/12));
+//  max-width: percentage(6/12);
+//}
+
+.main-content {
+  .container {
+    @include flexbox;
+    @include flex-wrap(wrap);
+
+    .content {
+      @include flex(1);
+    }
+
+    .aside {
+      width: 300px;
+      margin-left: $grid-gutter-width;
+    }
+  }
+
+  .section-nav {
+    width: 100%;
+  }
+}
+
+// home page
+.section-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-images {
+  width: 280px;
+  height: 280px;
+}
+
+.hero-text {
+  .h2,
+  .h3 {
+    font-size: 48px;
+  }
+
+  .h2 {
+    span {
+      font-size: 172px;
+      margin-top: -60px;
+      letter-spacing: -12px;
+      text-shadow: 9px -9px 0 #fff;
+    }
+  }
+
+  .text-anim-items {
+    width: 185px;
+  }
+}
+
+.list-news-img {
+  width: 90px;
+  height: 90px;
+  margin-right: 50px;
+
+  .day {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .month {
+    font-size: 12px;
+  }
+}
+
+.list-news-body {
+  font-size: 22px;
+}
+
+// blog
+.card-entry {
+  .card-body {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 30px;
+    margin-top: -45px;
+    background-color: #ffffff;
+    position: relative;
+    @include border-top-radius(8px);
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+}
+
+// dev
+.card-list-title {
+  .card > .card-title {
+    display: none;
+  }
+
+  .card-img-wrap {
+    width: 220px;
+    margin-right: 20px;
+  }
+
+  .card-body {
+    .card-title {
+      display: block;
+      font-size: 20px;
+      @include max-height-text(2, false, 20);
+    }
+  }
+}
