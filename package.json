@@ -14,8 +14,8 @@
     "prerender": "ng run angular-seed:prerender",
     "prebuild:ssr": "ngcc",
     "copy:third_party": "node cp-third_party",
-    "gcloud:config": "gcloud config set project pwa-app-6924d",
-    "gcloud:build": "gcloud builds submit --tag gcr.io/pwa-app-6924d/nest-angular-ssr"
+    "gcloud:config": "gcloud config set project nghiatran-net",
+    "gcloud:build": "gcloud builds submit --tag gcr.io/nghiatran-net/nest-angular-ssr"
   },
   "private": true,
   "dependencies": {
