@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,23 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+  blog$: any;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private afs: AngularFirestore) {
   }
 
   ngOnInit(): void {
     this.initTextAnimSlider();
+    this.getBlogPosts();
+  }
+
+  getBlogPosts() {
+    this.blog$ = this.afs
+      .collection('posts', ref => ref
+        .where('categoriesUsed.blog', '==', true)
+        .limit(5))
+      .valueChanges({idField: 'id'});
   }
 
   initTextAnimSlider() {

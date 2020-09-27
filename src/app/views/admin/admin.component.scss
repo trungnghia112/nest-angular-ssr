@@ -1,0 +1,13 @@
+@import "~src/scss/core";
+
+.p-field-checkbox {
+  & + .p-field-checkbox {
+    margin-top: 10px;
+  }
+
+  label {
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+}
+

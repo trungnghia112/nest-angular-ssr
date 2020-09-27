@@ -1,0 +1,25 @@
+
+.table-datatable-actions {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  visibility: hidden;
+
+  li {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+
+    a {
+      display: block;
+    }
+  }
+}
+
+.table-datatable-menus {
+  &:hover {
+    .table-datatable-actions {
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<div class="main-content">
+  <div class="container">
+    <div class="content">
+      <ng-container *ngIf="post">
+        <div [innerHTML]="post.content"></div>
+      </ng-container>
+    </div>
+    <app-aside class="aside"></app-aside>
+  </div>
+</div>

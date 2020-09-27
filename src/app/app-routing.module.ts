@@ -20,6 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/home/home.module').then(m => m.HomeModule),
       },
       {
+        path: 'p',
+        loadChildren: () => import('./views/pages/post-details/post-details.module').then(m => m.PostDetailsModule),
+      },
+      {
+        path: 'v',
+        loadChildren: () => import('./views/pages/video-details/video-details.module').then(m => m.VideoDetailsModule),
+      },
+      {
         path: 'vlog',
         loadChildren: () => import('./views/pages/vlog/vlog.module').then(m => m.VlogModule),
       },

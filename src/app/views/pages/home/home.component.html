@@ -56,54 +56,14 @@
     <div class="section-content">
       <h3 class="h3">LATEST FROM THE BLOG</h3>
       <ul class="list-media list-news">
-        <li>
+        <li *ngFor="let post of blog$ | async as blog">
           <div class="list-news-img">
             <span class="day">01</span>
             <span class="month">May</span>
             <img src="assets/dummy/1.jpg" alt="" loading="lazy">
           </div>
           <a href="#" class="list-news-body">
-            Gathering with old friends
-          </a>
-        </li>
-        <li>
-          <div class="list-news-img">
-            <span class="day">01</span>
-            <span class="month">May</span>
-            <img src="assets/dummy/1.jpg" alt="" loading="lazy">
-          </div>
-          <a href="#" class="list-news-body">
-            Gathering with old friends
-          </a>
-        </li>
-        <li>
-          <div class="list-news-img">
-            <span class="day">01</span>
-            <span class="month">May</span>
-            <img src="assets/dummy/1.jpg" alt="" loading="lazy">
-          </div>
-          <a href="#" class="list-news-body">
-            Gathering with old friends
-          </a>
-        </li>
-        <li>
-          <div class="list-news-img">
-            <span class="day">01</span>
-            <span class="month">May</span>
-            <img src="assets/dummy/1.jpg" alt="" loading="lazy">
-          </div>
-          <a href="#" class="list-news-body">
-            Gathering with old friends
-          </a>
-        </li>
-        <li>
-          <div class="list-news-img">
-            <span class="day">01</span>
-            <span class="month">May</span>
-            <img src="assets/dummy/1.jpg" alt="" loading="lazy">
-          </div>
-          <a href="#" class="list-news-body">
-            Gathering with old friends
+            {{ post.title }}
           </a>
         </li>
       </ul>

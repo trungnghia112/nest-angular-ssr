@@ -80,6 +80,11 @@
     app-root:not(:empty) + .app-loading {
       display: none;
     }
+    
+    app-root {
+      display: block;
+      width: 100%;
+    }
   </style>
   <link rel="preconnect" href="//www.google-analytics.com" crossorigin>
   <link rel="preload" as="font" type="font/woff" crossorigin href="assets/fonts/icomoon/fonts/icomoon.woff?g3y3cz">
@@ -87,8 +92,9 @@
   <noscript>
     <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
   </noscript>
-  <link rel="stylesheet" href="assets/dist/app.min.css">
-  <link rel="stylesheet" href="assets/dist/desktop.min.css" media="screen and (min-width: 992px)">
+  <link id="app-style" rel="stylesheet" href="assets/dist/app.min.css">
+  <link id="app-style-desktop" rel="stylesheet" href="assets/dist/desktop.min.css"
+        media="screen and (min-width: 992px)">
 </head>
 <body>
 <app-root></app-root>

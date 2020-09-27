@@ -8,9 +8,12 @@ interface Scripts {
 
 export const ScriptStore: Scripts[] = [
   // {name: 'filepicker', src: 'https://api.filestackapi.com/filestack.js'},
+  {name: '', src: ''},
 ];
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UtilsService {
   head: any;
   private scripts: any = {};
@@ -18,12 +21,14 @@ export class UtilsService {
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.head = this.document.getElementsByTagName('head')[0];
 
-    ScriptStore.forEach((script: any) => {
-      this.scripts[script.name] = {
-        loaded: false,
-        src: script.src
-      };
-    });
+    if (ScriptStore.length) {
+      ScriptStore.forEach((script: any) => {
+        this.scripts[script.name] = {
+          loaded: false,
+          src: script.src
+        };
+      });
+    }
   }
 
   /**
@@ -46,6 +51,20 @@ export class UtilsService {
           });
         }
         this.head.appendChild(style);
+      }
+    });
+  }
+
+  loadJs(styleName: string, styleId: string) {
+    return new Promise((resolve, reject) => {
+      let scriptLink = this.document.getElementById(styleId) as HTMLScriptElement;
+      if (scriptLink) {
+        scriptLink.src = styleName;
+      } else {
+        const js = this.document.createElement('script');
+        js.id = styleId;
+        js.src = styleName;
+        this.head.appendChild(js);
       }
     });
   }
@@ -96,6 +115,44 @@ export class UtilsService {
           };
         }
         script.onerror = (error: any) => resolve({script: name, loaded: false, status: 'Loaded'});
+        this.head.appendChild(script);
+      }
+    });
+  }
+
+  loadScriptLazy(scriptData: { name: string, loaded: boolean, src: string }, options?: { key: string, value: string }[]) {
+    console.log(scriptData);
+    return new Promise((resolve, reject) => {
+      // resolve if already loaded
+      if (scriptData.loaded) {
+        resolve({script: scriptData.name, loaded: true, status: 'Already Loaded'});
+      } else {
+        // load script
+        let script: any = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = scriptData.src;
+
+        if (options) {
+          options.map((v: { key: string, value: string }) => {
+            script.setAttribute(v.key, v.value);
+          });
+        }
+
+        if (script.readyState) {  // IE
+          script.onreadystatechange = () => {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
+              script.onreadystatechange = null;
+              scriptData.loaded = true;
+              resolve({script: scriptData.name, loaded: true, status: 'Loaded'});
+            }
+          };
+        } else {  // Others
+          script.onload = () => {
+            scriptData.loaded = true;
+            resolve({script: scriptData.name, loaded: true, status: 'Loaded'});
+          };
+        }
+        script.onerror = (error: any) => resolve({script: scriptData.name, loaded: false, status: 'Loaded'});
         this.head.appendChild(script);
       }
     });
