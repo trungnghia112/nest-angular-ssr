@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-seed": {
+    "angular-cli-seed": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-seed/browser",
+            "outputPath": "dist/angular-cli-seed/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,31 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest",
-              "src/robots.txt"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "firebase",
-              "@firebase/app",
-              "@firebase/analytics",
-              "@firebase/app",
-              "@firebase/auth",
-              "@firebase/component",
-              "@firebase/database",
-              "@firebase/firestore",
-              "@firebase/functions",
-              "@firebase/installations",
-              "@firebase/messaging",
-              "@firebase/storage",
-              "@firebase/performance",
-              "@firebase/remote-config",
-              "@firebase/util"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -78,27 +59,25 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-seed:build"
+            "browserTarget": "angular-cli-seed:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-seed:build:production"
+              "browserTarget": "angular-cli-seed:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-seed:build"
+            "browserTarget": "angular-cli-seed:build"
           }
         },
         "test": {
@@ -110,8 +89,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -137,18 +115,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-seed:serve"
+            "devServerTarget": "angular-cli-seed:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-seed:serve:production"
+              "devServerTarget": "angular-cli-seed:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-seed/server",
+            "outputPath": "dist/angular-cli-seed/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "externalDependencies": [
@@ -156,8 +134,7 @@
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
-              "cache-manager",
-              "@firebase/firestore"
+              "cache-manager"
             ]
           },
           "configurations": {
@@ -177,21 +154,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "angular-seed:build",
-            "serverTarget": "angular-seed:server"
+            "browserTarget": "angular-cli-seed:build",
+            "serverTarget": "angular-cli-seed:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-seed:build:production",
-              "serverTarget": "angular-seed:server:production"
+              "browserTarget": "angular-cli-seed:build:production",
+              "serverTarget": "angular-cli-seed:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "angular-seed:build:production",
-            "serverTarget": "angular-seed:server:production",
+            "browserTarget": "angular-cli-seed:build:production",
+            "serverTarget": "angular-cli-seed:server:production",
             "routes": [
               "/"
             ]
@@ -199,15 +176,11 @@
           "configurations": {
             "production": {}
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {}
         }
       }
     }
   },
-  "defaultProject": "angular-seed",
+  "defaultProject": "angular-cli-seed",
   "cli": {
     "analytics": false
   }

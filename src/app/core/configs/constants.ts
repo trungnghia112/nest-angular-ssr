@@ -1,6 +1,6 @@
 export const Constants = {
   pagination: {
-    perPage: 20
+    perPage: 8
   },
   api: {
     login: '/login'
@@ -8,8 +8,8 @@ export const Constants = {
   message: {
     emptyMessage: 'No Data'
   },
-  redirectUrl: '/admin',
-  loginUrl: '/admin/login',
+  redirectUrl: '/dashboard',
+  loginUrl: '/auth/login',
 
   asideMenu: [
     {

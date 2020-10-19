@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.loader-block {
+  span.loader {
+    display: block;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.loader-inline-block {
+  span.loader {
+    display: inline-block;
+    margin-bottom: 0;
+
+    + .loader {
+      margin-left: 10px;
+    }
+  }
+}
+
+.pos-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

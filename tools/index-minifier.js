@@ -1,7 +1,7 @@
 var fs = require('fs');
 var minify = require('html-minifier').minify;
 
-var filePath = 'dist/angular-seed/browser/index.html';
+var filePath = 'dist/angular-cli-seed/browser/index.html';
 
 fs.readFile(filePath, function (err, buf) {
     if (err) {

@@ -1,0 +1,69 @@
+<h3 class="title">BÀI VIẾT MỚI NHẤT</h3>
+<ng-container *ngIf="posts$ | async as posts;else templateLoading">
+  <div class="card">
+    <a [routerLink]="['/p', posts[0].slug]" class="card-img-wrap">
+      <img *ngIf="posts[0]._embedded"
+           [src]="posts[0]._embedded['wp:featuredmedia']['0'].media_details.sizes.medium.source_url" alt=""
+           class="card-img"
+           loading="lazy">
+    </a>
+    <div class="card-body">
+      <a [routerLink]="['/p', posts[0].slug]" href="#" class="card-title"
+         [innerHTML]="posts[0].title.rendered | safeHtml">
+      </a>
+      <!--<div class="card-categories">
+        <a href="category.html">Xu Hướng Kinh Doanh</a>
+      </div>-->
+    </div>
+  </div>
+  <div class="card-list">
+    <ng-container *ngFor="let post of posts; let i = index">
+      <div *ngIf="i > 0" class="card">
+        <a [routerLink]="['/p', post.slug]" href="#" class="card-img-wrap">
+          <img *ngIf="post._embedded"
+               [src]="post._embedded['wp:featuredmedia']['0'].media_details.sizes.thumbnail.source_url" alt=""
+               class="card-img"
+               loading="lazy">
+        </a>
+        <div class="card-body">
+          <a [routerLink]="['/p', post.slug]" href="#" class="card-title"
+             [innerHTML]="post.title.rendered | safeHtml">
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-template #templateLoading>
+  <div class="card">
+    <div class="card-img-wrap">
+      <div class="pos-cover">
+        <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '100%'}"></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">
+        <ngx-skeleton-loader class="loader-block" count="2" [theme]="{height: '20px'}"></ngx-skeleton-loader>
+      </div>
+      <!--<div class="card-categories">
+        <a href="category.html">Xu Hướng Kinh Doanh</a>
+      </div>-->
+    </div>
+  </div>
+  <div class="card-list">
+    <ng-container *ngFor="let post of [].constructor(4); let i = index">
+      <div class="card">
+        <div class="card-img-wrap">
+          <div class="pos-cover">
+            <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '100%'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            <ngx-skeleton-loader class="loader-block" count="3" [theme]="{height: '14px'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

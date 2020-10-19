@@ -1,30 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '@env/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { PagesComponent } from '@pages/pages.component';
-import { PartialsModule } from '@pages/partials/partials.module';
+import { ErrorPageComponent } from '@pages/error-page/error-page.component';
+import { CoreAppModule } from '@core/core.module';
+import { SharedAppModule } from '@shared/shared.module';
+import { LayoutsModule } from './views/layouts/layouts.module';
+import { PartialsModule } from '@partials/partials.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent
+    PagesComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
-    NoopAnimationsModule,
     AppRoutingModule,
-    // ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
+    CoreAppModule,
+    SharedAppModule,
+    LayoutsModule,
     PartialsModule
   ],
   providers: [],

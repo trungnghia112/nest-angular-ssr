@@ -1,3 +1,4 @@
+/*
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -87,7 +88,7 @@ export class AuthService {
     return this.auth.createUserWithEmailAndPassword(email, password)
       .then((credential) => {
         this.notify.update('Welcome to Firestarter!!!', 'success');
-        return this.updateUserData({...credential.user, displayName: name}); // if using firestore
+        return this.updateUserData({ ...credential.user, displayName: name }); // if using firestore
       })
       .catch((error) => this.handleError(error));
   }
@@ -116,42 +117,6 @@ export class AuthService {
     });
   }
 
-  ///// Role-based Authorization //////
-
-  canRead(user: User): boolean {
-    const allowed = ['admin', 'editor', 'subscriber'];
-    return this.checkAuthorization(user, allowed);
-  }
-
-  canEdit(user: User): boolean {
-    const allowed = ['admin', 'editor'];
-    return this.checkAuthorization(user, allowed);
-  }
-
-  canDelete(user: User): boolean {
-    const allowed = ['admin'];
-    return this.checkAuthorization(user, allowed);
-  }
-
-  isAdmin(user: User): boolean {
-    const allowed = ['admin'];
-    return this.checkAuthorization(user, allowed);
-  }
-
-
-  // determines if user has matching role
-  private checkAuthorization(user: User, allowedRoles: string[]): boolean {
-    if (!user) {
-      return false;
-    }
-    for (const role of allowedRoles) {
-      if (user.roles[role]) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   // If error, console log and notify user
   private handleError(error: Error) {
     console.error(error);
@@ -167,13 +132,11 @@ export class AuthService {
         uid: user.uid,
         email: user.email || null,
         displayName: user.displayName || 'nameless user',
-        photoURL: user.photoURL || null,
-        roles: {
-          subscriber: true
-        }
+        photoURL: user.photoURL || null
       };
-      return userRef.set(data, {merge: true});
+      return userRef.set(data);
     }
     return false;
   }
 }
+*/

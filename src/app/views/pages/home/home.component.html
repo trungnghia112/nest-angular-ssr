@@ -22,32 +22,31 @@
 <section class="section-feature">
   <div class="container">
     <div class="section-content">
-      <div class="row">
-        <div class="col-4">
+      <div class="row" *ngIf="categories$ | async as categories;else templateCategoriesLoading">
+        <div class="col-4" *ngFor="let category of categories">
           <div class="card">
-            <a href="detail.html" class="card-img-wrap">
-              <img src="assets/dummy/1.jpg" class="card-img" alt="..." loading="lazy">
+            <a [routerLink]="['/c', category.slug]" href="#" class="card-img-wrap">
+              <img [src]="category.thumbnail_src" class="card-img" alt="{{ category.title }}" loading="lazy">
             </a>
-            <div class="card-img-overlay"><a href="detail.html" class="card-title">Vlog</a></div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card">
-            <a href="detail.html" class="card-img-wrap">
-              <img src="assets/dummy/1.jpg" class="card-img" alt="..." loading="lazy">
-            </a>
-            <div class="card-img-overlay"><a href="detail.html" class="card-title">Blog</a></div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card">
-            <a href="detail.html" class="card-img-wrap">
-              <img src="assets/dummy/1.jpg" class="card-img" alt="..." loading="lazy">
-            </a>
-            <div class="card-img-overlay"><a href="detail.html" class="card-title">Dev</a></div>
+            <div class="card-img-overlay">
+              <a [routerLink]="['/c', category.slug]" href="#" class="card-title">{{ category.title }}</a>
+            </div>
           </div>
         </div>
       </div>
+      <ng-template #templateCategoriesLoading>
+        <div class="row">
+          <div class="col-4" *ngFor="let item of [].constructor(3)">
+            <div class="card">
+              <div class="card-img-wrap">
+                <div class="pos-cover">
+                  <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '100%'}"></ngx-skeleton-loader>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 </section>
@@ -56,16 +55,32 @@
     <div class="section-content">
       <h3 class="h3">LATEST FROM THE BLOG</h3>
       <ul class="list-media list-news">
-        <li *ngFor="let post of blog$ | async as blog">
-          <div class="list-news-img">
-            <span class="day">01</span>
-            <span class="month">May</span>
-            <img src="assets/dummy/1.jpg" alt="" loading="lazy">
-          </div>
-          <a href="#" class="list-news-body">
-            {{ post.title }}
-          </a>
-        </li>
+        <ng-container *ngIf="blog$ | async as blog;else loadingList">
+          <li *ngFor="let post of blog">
+            <div class="list-news-img">
+              <span class="day">{{ post.date_gmt | date: 'dd' }}</span>
+              <span class="month">{{ post.date_gmt | date: 'MMM' }}</span>
+              <img *ngIf="post._embedded"
+                   [src]="post._embedded['wp:featuredmedia']['0'].media_details.sizes.thumbnail.source_url" alt="post.title.rendered | safeHtml"
+                   loading="lazy">
+            </div>
+            <a [routerLink]="['/p', post.slug]" href="#" class="list-news-body">
+              <span [innerHTML]="post.title.rendered | safeHtml"></span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #loadingList>
+          <li *ngFor="let item of [].constructor(5);">
+            <div class="list-news-img">
+              <div class="pos-cover">
+                <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '90px'}"></ngx-skeleton-loader>
+              </div>
+            </div>
+            <div class="list-news-body">
+              <ngx-skeleton-loader class="loader-block" count="2" [theme]="{height: '25px'}"></ngx-skeleton-loader>
+            </div>
+          </li>
+        </ng-template>
       </ul>
       <div class="view-more">
         <a href="#" class="btn btn-outline-secondary">See All Posts</a>

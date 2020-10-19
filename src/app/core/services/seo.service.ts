@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,13 @@ export class SeoService {
     this.title.setTitle(title);
     this.meta.addTags([
       // Open Graph
-      {name: 'og:url', content: `https://firestarter.fireship.io${this.router.url}`},
+      {name: 'og:url', content: `${environment.domain.app}/${this.router.url}`},
       {name: 'og:title', content: title},
       {name: 'og:description', content: description},
       {name: 'og:image', content: image},
       // Twitter Card
       {name: 'twitter:card', content: 'summary'},
-      {name: 'twitter:site', content: '@fireship_dev'},
+      {name: 'twitter:site', content: '@trungnghia112'},
     ]);
 
     // this.insertLdJson();

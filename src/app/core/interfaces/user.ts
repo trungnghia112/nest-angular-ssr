@@ -1,9 +1,3 @@
-export interface Roles {
-  subscriber?: boolean;
-  editor?: boolean;
-  admin?: boolean;
-}
-
 export interface User {
   id?: number;
   name?: string;
@@ -16,5 +10,4 @@ export interface User {
   uid?: string;
   displayName?: string;
   photoURL?: string;
-  roles?: Roles;
 }

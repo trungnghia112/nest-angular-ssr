@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { ApiService } from '@core/services/api.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { from, Observable } from 'rxjs';
+import { SettingsService } from '@core/services/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +13,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class HomeComponent implements OnInit {
   blog$: any;
 
+  categories$: Observable<any>;
+
   constructor(@Inject(PLATFORM_ID) private platformId: any,
-              private afs: AngularFirestore) {
+              private http: ApiService,
+              private settingsService: SettingsService) {
+    this.categories$ = this.settingsService.categories$;
   }
 
   ngOnInit(): void {
@@ -20,11 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   getBlogPosts() {
-    this.blog$ = this.afs
-      .collection('posts', ref => ref
-        .where('categoriesUsed.blog', '==', true)
-        .limit(5))
-      .valueChanges({idField: 'id'});
+    this.blog$ = this.http.get('/posts?per_page=5&_fields=date_gmt,title,slug,_links,_embedded&_embed=wp:featuredmedia');
   }
 
   initTextAnimSlider() {

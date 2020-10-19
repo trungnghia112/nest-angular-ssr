@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-// import { SwUpdate } from '@angular/service-worker';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+import { SettingsService } from '@core/services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -9,30 +9,30 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-seed';
+  title = 'angular-cli-seed';
+  loadingIndicator: boolean;
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    // private updates: SwUpdate,
-    private router: Router,
-  ) {
-    /*this.updates.available.subscribe(() => {
-      // if (confirm('New version available. Load New Version?')) {
-      updates.activateUpdate().then(() => document.location.reload());
-      // }
-    });*/
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private router: Router,
+              private settingsService: SettingsService) {
+    this.settingsService.fetch().subscribe();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         // Show loading indicator
+        this.loadingIndicator = true;
       }
 
       if (event instanceof NavigationEnd) {
         // Hide loading indicator
+        this.loadingIndicator = false;
 
-        this.document.body.scrollTop = 0;
+        if (isPlatformBrowser(this.platformId)) {
+          const elmnt = document.getElementById('site_wrapper');
+          elmnt.scrollIntoView();
+        }
       }
 
       if (event instanceof NavigationError) {

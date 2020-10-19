@@ -665,6 +665,7 @@ a.close.disabled {
   transform: scale(1);
 }
 
+/*! purgecss start ignore */
 .text-anim-items {
   display: inline-block;
   position: relative;
@@ -1046,6 +1047,7 @@ a.close.disabled {
   }
 }
 
+/*! purgecss end ignore */
 .list-social {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1594,9 +1596,9 @@ Footer
   margin-right: auto;
 }
 
-.article-content {
-  line-height: 1.7;
+.article-content p {
   text-align: justify;
+  line-height: 1.7;
 }
 
 .article-content img {

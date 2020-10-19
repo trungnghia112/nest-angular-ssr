@@ -1,0 +1,30 @@
+<header class="header" id="header">
+  <div class="container">
+    <nav class="navbar">
+      <a class="navbar-brand" [routerLink]="['/']" href="/">
+<!--        <img width="300" height="68" src="assets/images/logo.svg" alt="logo">-->
+        <img width="300" height="68" src="https://molistudio.ai/html/starbiz/images/logo-stroke.png" alt="logo">
+      </a>
+      <input type="checkbox" id="menu-toggle">
+      <label class="navbar-toggler" for="menu-toggle">
+        <span class="navbar-toggler-icon"></span>
+      </label>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav">
+          <ng-container *ngIf="data$ | async as list;else templateMenusLoading">
+            <li *ngFor="let item of list">
+              <a [routerLink]="['/c', item.slug]" routerLinkActive="active" href="#">{{ item.title }}</a>
+            </li>
+          </ng-container>
+          <ng-template #templateMenusLoading>
+            <li>
+              <ngx-skeleton-loader class="loader-inline-block" count="4" [theme]="{height: '14px', width: '51px'}">
+              </ngx-skeleton-loader>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+

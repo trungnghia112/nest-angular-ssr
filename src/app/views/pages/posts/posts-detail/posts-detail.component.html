@@ -1,0 +1,140 @@
+<div class="section-article">
+  <div class="container">
+    <div *ngIf="post$ | async as post" class="article-main">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Kinh Doanh</li>
+        </ol>
+      </nav>
+      <h1 class="article-title" [innerHTML]="post.title.rendered | safeHtml">
+      </h1>
+      <ul class="article-info">
+        <li>
+          <div class="media media-avatar">
+            <a class="media-img" href="#">
+              <img [src]="post._embedded.author[0].avatar_urls[48] || post._embedded.author[0].avatar_urls[96]"
+                   width="64" height="64" alt="{{ post._embedded.author[0].name }}">
+            </a>
+            <div class="media-body">
+              <span class="h5">{{ post._embedded.author[0].name }}</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <time datetime="{{ post.date_gmt }}">{{ post.date_gmt | date: 'dd/MM/yyyy' }}</time>
+        </li>
+      </ul>
+      <div *ngIf="post._embedded['wp:featuredmedia']" class="article-image">
+        <img [src]="post._embedded['wp:featuredmedia']['0'].media_details.sizes.medium_large.source_url"
+             alt="{{ post.title.rendered | safeHtml }}">
+        <!--<figure>Nguồn: Waterfrom.</figure>-->
+      </div>
+      <div class="article-container">
+        <div class="article-actions">
+          <a class="article-actions-save" href="javascript:;"><i class="icon-bookmark_outline"></i> Lưu</a>
+          <div class="list-social hi-icon-effect-3 hi-icon-effect-3b">
+            <a class="hi-icon icon-facebook" href="https://facebook.com">Facebook</a>
+            <a class="hi-icon icon-whatsapp" href="https://facebook.com">Whatsapp</a>
+            <a class="hi-icon icon-link" href="https://facebook.com">link</a>
+          </div>
+        </div>
+        <div class="article-content">
+          <!--Remove content-->
+          <div [innerHTML]="post.content.rendered"></div>
+          <!--end remove content-->
+        </div>
+        <ul class="article-info">
+          <li>
+            <div class="media media-avatar">
+              <a class="media-img" href="#">
+                <img [src]="post._embedded.author[0].avatar_urls[48] || post._embedded.author[0].avatar_urls[96]"
+                     width="64" height="64" alt="{{ post._embedded.author[0].name }}">
+              </a>
+              <div class="media-body">
+                <span class="h5">{{ post._embedded.author[0].name }}</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="article-actions">
+              <a class="article-actions-save" href="javascript:;"><i class="icon-bookmark_outline"></i> Lưu</a>
+              <div class="list-social hi-icon-effect-3 hi-icon-effect-3b">
+                <a class="hi-icon icon-facebook" href="https://facebook.com">Facebook</a>
+                <a class="hi-icon icon-whatsapp" href="https://facebook.com">Whatsapp</a>
+                <a class="hi-icon icon-link" href="https://facebook.com">link</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <dl class="article-tag">
+          <dt>Từ khóa:</dt>
+          <dd>
+            <ng-container *ngFor="let tag of post._embedded['wp:term'][1] as tags">
+              <a [routerLink]="['/tags', tag.slug]" href="#">{{ tag.name }}</a>
+            </ng-container>
+          </dd>
+        </dl>
+      </div>
+    
+    </div>
+  </div>
+</div>
+<section class="section-category">
+  <div class="container">
+    <div class="section-nav">
+      <h2 class="title">
+        <a href="#">DÀNH CHO BẠN</a>
+      </h2>
+    </div>
+    <div class="row">
+      <ng-container *ngIf="relatedPosts;else templateLoadingRelated">
+        <ng-container *ngIf="relatedPosts.length;else templateNodataRelated">
+          <div class="col-4" *ngFor="let rl_post of relatedPosts">
+            <div class="card">
+              <a [routerLink]="['/p', rl_post.slug]" href="#" class="card-img-wrap">
+                <img [src]="rl_post._embedded['wp:featuredmedia']['0'].media_details.sizes.medium.source_url"
+                     width="400" height="300" class="card-img" alt="..." loading="lazy">
+              </a>
+              <div class="card-body">
+                <a [routerLink]="['/p', rl_post.slug]" href="#" class="card-title">
+                  <span [innerHTML]="rl_post.title.rendered | safeHtml"></span>
+                </a>
+                <div class="card-categories">
+                  <ng-container *ngFor="let category of rl_post._embedded['wp:term'][0] as categories">
+                    <a [routerLink]="['/categories', category.name]" href="">
+                      <span [innerHTML]="category.name"></span>
+                    </a>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #templateNodataRelated>
+          <div class="col-12">Không tìm thấy bài viết liên quan</div>
+        </ng-template>
+      </ng-container>
+      <ng-template #templateLoadingRelated>
+        <div class="col-4" *ngFor="let item of [].constructor(6);">
+          <div class="card">
+            <div class="card-img-wrap">
+              <div class="pos-cover">
+                <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '100%'}"></ngx-skeleton-loader>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-title">
+                <ngx-skeleton-loader class="loader-block" count="2" [theme]="{height: '20px'}"></ngx-skeleton-loader>
+              </div>
+              <div class="card-categories">
+                <ngx-skeleton-loader class="loader-block" count="1" [theme]="{height: '20px', width: '100px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
